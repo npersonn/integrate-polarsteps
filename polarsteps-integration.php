@@ -1,9 +1,7 @@
 <?php
 
 /**
- *
- * @link
- * @since             0.1.1
+ * @since             0.1.0
  * @package           Polarsteps_Integration
  *
  * @wordpress-plugin
