@@ -1,22 +1,16 @@
 <?php
 
 /**
- * The plugin bootstrap file
  *
- * This file is read by WordPress to generate the plugin information in the plugin
- * admin area. This file also includes all of the dependencies used by the plugin,
- * registers the activation and deactivation functions, and defines a function
- * that starts the plugin.
- *
- * @link              http://example.com
- * @since             0.1.0
+ * @link
+ * @since             0.1.1
  * @package           Polarsteps_Integration
  *
  * @wordpress-plugin
  * Plugin Name:       Polarsteps Integration
  * Plugin URI:        http://github.com/npersonn/polarsteps-integration
- * Description:       Integrating Trip Date from Polarsteps into Wordpress
- * Version:           0.1.0
+ * Description:       Integrating Trip Data from Polarsteps.com into Wordpress. Showing the last location in a widget.
+ * Version:           0.1.1
  * Author:            npersonn
  * Author URI:        http://github.com/npersonn
  * License:           GPL-2.0+
