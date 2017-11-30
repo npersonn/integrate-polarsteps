@@ -63,7 +63,43 @@ class Polarsteps_Integration_Data_Loader {
 	 * @return array
 	 */
 	public function get_step( $position ) {
-		return $this->get_all_steps()[ $position ] ?: [];
+		$step = $this->get_all_steps()[ $position ] ?: [];
+
+		$step['deep_link'] = $this->create_deeplink( $step );
+
+		return $step;
+	}
+
+	/**
+	 * @since 0.2.0
+	 *
+	 * @param array $step
+	 *
+	 * @return string|false
+	 */
+	private function create_deeplink( array $step ) {
+		$trip_id   = get_option( 'polarsteps_trip_legacy_id' );
+		$trip_slug = get_option( 'polarsteps_trip_slug' );
+		$username  = get_option( 'polarsteps_username' );
+
+		if (
+			! empty( $trip_id )
+			&& ! empty( $trip_slug )
+			&& ! empty( $username )
+			&& ! empty( $step['legacy_id'] )
+			&& ! empty( $step['slug'] )
+			&& ! empty( $step['uuid'] )
+		) {
+			return sprintf( 'https://www.polarsteps.com/%s/%s-%s/%s-%s/?s=%s',
+				$username,
+				$trip_id,
+				$trip_slug,
+				$step['legacy_id'],
+				$step['slug'],
+				strtoupper( $step['uuid'] )
+			);
+		}
+		return false;
 	}
 
 }

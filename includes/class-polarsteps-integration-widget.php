@@ -13,7 +13,7 @@ class Polarsteps_Integration_Location_Widget extends WP_Widget {
 	/**
 	 * Unique identifier for the polarsteps location widget.
 	 *
-	 * @since 0.1.2
+	 * @since 0.2.0
 	 *
 	 * @var string
 	 */
@@ -49,10 +49,20 @@ class Polarsteps_Integration_Location_Widget extends WP_Widget {
 
 		echo '<h2>Recent Location</h2>';
 
+
 		echo '<div class="polarsteps_widget">';
 
 		echo '<div class="polarsteps_location_name">';
-		echo '<b>' . esc_html__( $last_step['location_name'], 'text_domain' ) . '</b>';
+		if ( $last_step['deep_link'] ) {
+			echo '<a href="' . $last_step['deep_link'] . '"><span class="polarsteps_location_name_href">';
+		}
+
+		echo esc_html__( $last_step['location_name'], 'text_domain' );
+
+		if ( $last_step['deep_link'] ) {
+			echo '</span></a>';
+		}
+
 		echo '</div>';
 
 		if ( ! empty( $last_step['detail'] ) && ! empty( $last_step['location_country_code'] ) ) {
@@ -64,7 +74,7 @@ class Polarsteps_Integration_Location_Widget extends WP_Widget {
 
 
 		echo '<div class="polarsteps_start_time">';
-		echo esc_html__( date( "F jS, Y", strtotime( $last_step['start_time'] ) ) );
+		echo esc_html__( date( "d.F Y", strtotime( $last_step['start_time'] ) ) );
 		echo '</div>';
 
 		echo '</div>';
@@ -74,7 +84,7 @@ class Polarsteps_Integration_Location_Widget extends WP_Widget {
 	/**
 	 * Return the widget slug.
 	 *
-	 * @since    1.0.0
+	 * @since    0.1.0
 	 *
 	 * @return    string Plugin slug variable.
 	 */
@@ -84,7 +94,7 @@ class Polarsteps_Integration_Location_Widget extends WP_Widget {
 	}
 
 	/**
-	 * @since 0.1.2
+	 * @since 0.2.0
 	 *
 	 * @param string $country_code representing a Country Code value
 	 *
@@ -99,7 +109,7 @@ class Polarsteps_Integration_Location_Widget extends WP_Widget {
 	}
 
 	/**
-	 * @since 0.1.2
+	 * @since 0.2.0
 	 */
 	public function register_widget_styles() {
 		wp_enqueue_style( $this->get_widget_slug() . '-styles', plugin_dir_url( __FILE__ ) . 'styles/location-widget.css' );

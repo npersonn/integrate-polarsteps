@@ -249,7 +249,7 @@ class Polarsteps_Integration {
 		global $polarsteps_db_version;
 		global $polarsteps_table_name;
 
-		$polarsteps_db_version = '1.0';
+		$polarsteps_db_version = '1.1';
 		$polarsteps_table_name = $wpdb->prefix . 'polarsteps';
 	}
 

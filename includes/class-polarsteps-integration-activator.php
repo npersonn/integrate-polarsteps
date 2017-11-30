@@ -37,24 +37,34 @@ class Polarsteps_Integration_Activator {
 
 		$charset_collate = $wpdb->get_charset_collate();
 
-		$sql = "CREATE TABLE $polarsteps_table_name (
-		id mediumint(9) NOT NULL AUTO_INCREMENT,
-		uuid text NOT NULL,
-		start_time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
-		location_name VARCHAR(155),
-		detail VARCHAR(155),
-		location_lat FLOAT NOT NULL, 
-		location_lon FLOAT NOT NULL,
-		location_country_code VARCHAR(5),		 
-		PRIMARY KEY  (id)
-	) $charset_collate;";
+		$installed_version = get_option( 'polarsteps_db_version' );
 
-		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-		dbDelta( $sql );
+		if ( $installed_version != $polarsteps_db_version ) {
 
-		add_option( 'polarsteps_db_version', $polarsteps_db_version );
+			$sql = "CREATE TABLE $polarsteps_table_name (
+				id mediumint(9) NOT NULL AUTO_INCREMENT,
+				uuid text NOT NULL,
+				start_time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+				location_name VARCHAR(155),
+				detail VARCHAR(155),
+				location_lat FLOAT NOT NULL, 
+				location_lon FLOAT NOT NULL,
+				location_country_code VARCHAR(5),
+				legacy_id mediumint(9),
+				slug VARCHAR (55),
+				trip_id mediumint(9),
+				thumbnail_path_small VARCHAR(155),		 
+				thumbnail_path_large VARCHAR(155),		 
+				PRIMARY KEY  (id)
+		) $charset_collate;";
 
-		do_action('polarsteps_update_steps');
+			require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+			dbDelta( $sql );
+
+			add_option( 'polarsteps_db_version', $polarsteps_db_version );
+		}
+
+		do_action( 'polarsteps_update_steps' );
 	}
 
 

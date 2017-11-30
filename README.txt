@@ -56,6 +56,10 @@ Currently the plugin only supports having profiles with one trip. For now enter 
 
 == Changelog ==
 
+= 0.2.0 =
+* Added Deeplink for Recent Location Widget
+* Extended Database Schema for deeplink generation
+
 = 0.1.1 =
 * Updated Descriptions
 * Added Plugin Icons
