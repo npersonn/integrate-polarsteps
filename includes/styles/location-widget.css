@@ -1,0 +1,21 @@
+.polarsteps_widget {
+    text-decoration: none;
+}
+
+.polarsteps_country_flag {
+    vertical-align: middle;
+    width: 16px;
+    max-width: 16px;
+    min-width: 16px;
+    box-shadow: 0 0 1px rgba(0, 0, 0, .4);
+    margin-bottom: 2px;
+    margin-right: 6px;
+}
+
+.polarsteps_start_time {
+    font-size: 0.8em;
+}
+
+.polarsteps_location_name_href {
+    font-weight: bold;
+}
