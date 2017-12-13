@@ -11,10 +11,7 @@
  */
 
 /**
- * The admin-specific functionality of the plugin.
- *
- * Defines the plugin name, version, and two examples hooks for how to
- * enqueue the admin-specific stylesheet and JavaScript.
+ * The admin-specific functionality of the polarsteps integration plugin.
  *
  * @package    Polarsteps_Integration
  * @subpackage Polarsteps_Integration/admin
@@ -63,7 +60,6 @@ class Polarsteps_Integration_Admin {
 	 */
 	public function register_settings() {
 
-		//add_settings_section( 'polarsteps_settings', 'Settings for Polarsteps Integration' );
 		register_setting( 'polarsteps_settings', 'polarsteps_user_id', array(
 			'show_in_rest' => true,
 			'type'         => 'integer',
@@ -86,8 +82,8 @@ class Polarsteps_Integration_Admin {
 	public function add_options_page() {
 
 		add_options_page(
-			'Polarstep Integration Settings',
-			'Polarstep Settings',
+			'Polarsteps Integration Settings',
+			'Polarsteps Settings',
 			'manage_options',
 			'polarsteps-settings',
 			array( $this, 'render' )

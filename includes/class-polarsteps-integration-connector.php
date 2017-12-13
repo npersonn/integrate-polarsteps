@@ -36,7 +36,12 @@ class Polarsteps_Integration_Connector {
 
 		$user_id = get_option( 'polarsteps_user_id' );
 		$trip_id = get_option( 'polarsteps_trip_id' );
-		$result  = file_get_contents( self::POLARSTEPS_URI . 'users/' . $user_id );
+
+		if ( empty( $user_id ) ) {
+			return false;
+		}
+
+		$result = file_get_contents( self::POLARSTEPS_URI . 'users/' . $user_id );
 
 		if ( $result ) {
 
