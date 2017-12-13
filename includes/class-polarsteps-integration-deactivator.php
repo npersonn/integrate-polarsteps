@@ -23,14 +23,14 @@
 class Polarsteps_Integration_Deactivator {
 
 	/**
-	 * ToDo: Think about truncate / drop the polarsteps table
-	 * Short Description. (use period)
+	 * Removing cached Data from table
 	 *
-	 * Long Description.
-	 *
-	 * @since    0.1.0
+	 * @since    0.2.1
 	 */
 	public static function deactivate() {
+		global $wpdb;
+		global $polarsteps_table_name;
+		$wpdb->query("TRUNCATE TABLE {$polarsteps_table_name}");
 	}
 
 }

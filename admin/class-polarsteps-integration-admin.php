@@ -104,7 +104,11 @@ class Polarsteps_Integration_Admin {
 		?>
         <div class="wrap">
 
-            <h1>Polarsteps Integration Settings</h1>
+            <h1>
+                <?php
+                    _e('Polarsteps Integration Settings', 'polarsteps-integration');
+                ?>
+            </h1>
 
             <form method="post" action="options.php">
 
@@ -114,7 +118,7 @@ class Polarsteps_Integration_Admin {
 
                 <table class="form-table">
                     <tr>
-                        <th scope="row"><label for="polarsteps_user_id"><?php _e( 'User Id for Polarsteps API' ); ?></label></th>
+                        <th scope="row"><label for="polarsteps_user_id"><?php _e( 'User Id for Polarsteps API', 'polarsteps-integration' ); ?></label></th>
                         <td>
                             <input name="polarsteps_user_id" type="number" step="1" min="0" id="polarsteps_user_id" value="<?php form_option( 'polarsteps_user_id' ); ?>" class="small-text" />
 
@@ -122,13 +126,16 @@ class Polarsteps_Integration_Admin {
                     </tr>
                     <tr>
                         <td>
-                            Inspect on your browser all the calls made, when open your trip on the polarsteps website. You find a XHR-call in this
-                            scheme: `https://www.polarsteps.com/api/users/123456`. `123456` is your User Id.
+                            <?php
+                             _e('Inspect on your browser all the calls made, when open your trip on the polarsteps website. You find a XHR-call in this
+                            scheme: `https://www.polarsteps.com/api/users/123456`. `123456` is your User Id.', 'polarsteps-integration');
+                            ?>
+
                         </td>
                     </tr>
                     <tr>
                         <th scope="row"><label
-                                    for="polarsteps_trip_id"><?php _e( 'Trip Id for Polarsteps API' ); ?></label></th>
+                                    for="polarsteps_trip_id"><?php _e( 'Trip Id for Polarsteps API', 'polarsteps-integration'); ?></label></th>
                         <td>
                             <input name="polarsteps_trip_id" type="number" step="1" min="0" id="polarsteps_trip_id"
                                    value="<?php form_option( 'polarsteps_trip_id' ); ?>" class="small-text"/>
@@ -136,7 +143,10 @@ class Polarsteps_Integration_Admin {
                     </tr>
                     <tr>
                         <td>
-                            Default Trip Id is "0".
+                            <?php
+                            _e('Default Trip Id is "0".', 'polarsteps-integration');
+                            ?>
+
                         </td>
                     </tr>
 

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Showing a Widget with the most recent locations from polarsteps.
+ * Showing a Widget with the most recent location from polarsteps.
  *
  * @package    Polarsteps_Integration
  * @subpackage Polarsteps_Integration
@@ -47,7 +47,7 @@ class Polarsteps_Integration_Location_Widget extends WP_Widget {
 
 		$last_step = apply_filters( 'polarsteps_get_step', 0 );
 
-		echo '<h2>Recent Location</h2>';
+		echo '<h2>' . __( 'Recent Location', 'polarsteps-integration' ) . '</h2>';
 
 
 		echo '<div class="polarsteps_widget">';
@@ -74,7 +74,9 @@ class Polarsteps_Integration_Location_Widget extends WP_Widget {
 
 
 		echo '<div class="polarsteps_start_time">';
-		echo esc_html__( date( "d.F Y", strtotime( $last_step['start_time'] ) ) );
+		if ( $last_step['start_time'] ) {
+			echo esc_html__( date( "d.F Y", strtotime( $last_step['start_time'] ) ) );
+		}
 		echo '</div>';
 
 		echo '</div>';
