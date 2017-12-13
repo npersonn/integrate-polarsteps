@@ -2,55 +2,47 @@
 # This file is distributed under the same license as the Polarsteps Integration package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Polarsteps Integration 0.2.0\n"
+"Project-Id-Version: Polarsteps Integration 0.3.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/integrate-"
 "polarsteps\n"
-"POT-Creation-Date: 2017-12-04 11:14:00+00:00\n"
+"POT-Creation-Date: 2017-12-13 09:12:38+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-12-04 18:19+0700\n"
+"PO-Revision-Date: 2017-12-13 16:16+0700\n"
 "Language-Team: \n"
 "X-Generator: Poedit 2.0.4\n"
 "Last-Translator: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Language: de_DE\n"
 
-#: admin/class-polarsteps-integration-admin.php:70
-msgid "User Id from Polarsteps API."
-msgstr "User Id von Polarsteps API."
+#: admin/class-polarsteps-integration-admin.php:66
+msgid "Username from Polarsteps API."
+msgstr "Username von Polarsteps."
 
-#: admin/class-polarsteps-integration-admin.php:76
+#: admin/class-polarsteps-integration-admin.php:72
 msgid "Trip Id from Polarsteps API."
-msgstr "Trip Id von Polarsteps API."
+msgstr "Trip Id vom Polarsteps."
 
-#: admin/class-polarsteps-integration-admin.php:109
+#: admin/class-polarsteps-integration-admin.php:105
 msgid "Polarsteps Integration Settings"
 msgstr "Polarsteps Integration Einstellungen"
 
-#: admin/class-polarsteps-integration-admin.php:121
-msgid "User Id for Polarsteps API"
-msgstr "User Id von Polarsteps API"
+#: admin/class-polarsteps-integration-admin.php:118
+msgid "Username for Polarsteps API"
+msgstr "Username von Polarsteps"
 
-#: admin/class-polarsteps-integration-admin.php:130
-msgid ""
-"Inspect on your browser all the calls made, when open your trip on the "
-"polarsteps website. You find a XHR-call in this\n"
-"                            scheme: `https://www.polarsteps.com/api/"
-"users/123456`. `123456` is your User Id."
-msgstr ""
-"Nutze die Untersuchen Funktionalität des Browsers, wenn die Seite des "
-"Trips geöffnet wird. Unter Netzwerk ist ein XHR-Call zu finden \n"
-"in diesem Schema: `https://www.polarsteps.com/api/users/123456`. `123456` "
-"ist die gesuchte User Id."
+#: admin/class-polarsteps-integration-admin.php:129
+msgid "Your Polarsteps Username."
+msgstr "Dein Polarsteps Username"
 
-#: admin/class-polarsteps-integration-admin.php:138
+#: admin/class-polarsteps-integration-admin.php:136
 msgid "Trip Id for Polarsteps API"
-msgstr "Trip Id von Polarsteps API"
+msgstr "Trip Id für Polarsteps API"
 
-#: admin/class-polarsteps-integration-admin.php:147
+#: admin/class-polarsteps-integration-admin.php:145
 msgid "Default Trip Id is \"0\"."
-msgstr "Standard ist \"0\"."
+msgstr "Die Standard-Trip-ID ist \"0\"."
 
 #: includes/class-polarsteps-integration-widget.php:50
 msgid "Recent Location"
@@ -61,16 +53,18 @@ msgid "Polarsteps Integration"
 msgstr "Polarsteps Integration"
 
 #. Plugin URI of the plugin/theme
-msgid "http://github.com/npersonn/polarsteps-integration"
-msgstr "http://github.com/npersonn/polarsteps-integration"
+msgid "http://github.com/npersonn/integrate-polarsteps"
+msgstr "http://github.com/npersonn/integrate-polarsteps"
 
 #. Description of the plugin/theme
 msgid ""
 "Integrating Trip Data from Polarsteps.com into Wordpress. Showing the last "
-"location in a widget."
+"location in a widget. To get started: After activation, set your polarsteps "
+"Username in the Polarsteps Settings to be able to get data."
 msgstr ""
-"Integration von Polarsteps.com Daten in Wordpress. Das Plugin zeigt u.a. "
-"den letzten Standort innerhalb eines Widgets."
+"Integriert Daten von Polarsteps.com in Wordpress. Das Plugin zeigt den "
+"letzten Standort in einem Widget. Zu Beginn: Nach der Aktivierung, gehe zu "
+"den Polarsteps Einstellungen und hinterlege deinen Username. "
 
 #. Author of the plugin/theme
 msgid "npersonn"

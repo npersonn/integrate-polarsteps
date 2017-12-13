@@ -7,7 +7,7 @@
  * @wordpress-plugin
  * Plugin Name:       Polarsteps Integration
  * Plugin URI:        http://github.com/npersonn/integrate-polarsteps
- * Description:       Integrating Trip Data from Polarsteps.com into Wordpress. Showing the last location in a widget. To get started: After activation, set your polarsteps UserId in the Polarsteps Settings to be able to get data.
+ * Description:       Integrating Trip Data from Polarsteps.com into Wordpress. Showing the last location in a widget. To get started: After activation, set your polarsteps Username in the Polarsteps Settings to be able to get data.
  * Version:           0.3.0
  * Author:            npersonn
  * Author URI:        http://github.com/npersonn
