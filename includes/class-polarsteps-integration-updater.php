@@ -71,6 +71,10 @@ class Polarsteps_Integration_Updater {
 		$steps          = $this->connector->polarsteps_get_step_data();
 		$existing_steps = $this->data_loader->get_all_steps();
 
+		if (!is_array($steps)) {
+			return;
+		}
+
 		$is_existing = false;
 		foreach ( $steps as $step ) {
 

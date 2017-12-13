@@ -60,10 +60,10 @@ class Polarsteps_Integration_Admin {
 	 */
 	public function register_settings() {
 
-		register_setting( 'polarsteps_settings', 'polarsteps_user_id', array(
+		register_setting( 'polarsteps_settings', 'polarsteps_username', array(
 			'show_in_rest' => true,
-			'type'         => 'integer',
-			'description'  => __( 'User Id from Polarsteps API.' ),
+			'type'         => 'string',
+			'description'  => __( 'Username from Polarsteps API.' ),
 		) );
 
 		register_setting( 'polarsteps_settings', 'polarsteps_trip_id', array(
@@ -114,18 +114,20 @@ class Polarsteps_Integration_Admin {
 
                 <table class="form-table">
                     <tr>
-                        <th scope="row"><label for="polarsteps_user_id"><?php _e( 'User Id for Polarsteps API', 'polarsteps-integration' ); ?></label></th>
+                        <th scope="row"><label
+                                    for="polarsteps_username"><?php _e( 'Username for Polarsteps API', 'polarsteps-integration' ); ?></label>
+                        </th>
                         <td>
-                            <input name="polarsteps_user_id" type="number" step="1" min="0" id="polarsteps_user_id" value="<?php form_option( 'polarsteps_user_id' ); ?>" class="small-text" />
+                            <input name="polarsteps_user_id" type="string" id="polarsteps_username"
+                                   value="<?php form_option( 'polarsteps_username' ); ?>"/>
 
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <?php
-                             _e('Inspect on your browser all the calls made, when open your trip on the polarsteps website. You find a XHR-call in this
-                            scheme: `https://www.polarsteps.com/api/users/123456`. `123456` is your User Id.', 'polarsteps-integration');
-                            ?>
+							<?php
+							_e( 'Your Polarsteps Username.', 'polarsteps-integration' );
+							?>
 
                         </td>
                     </tr>

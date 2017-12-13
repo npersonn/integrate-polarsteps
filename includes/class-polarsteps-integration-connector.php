@@ -35,15 +35,24 @@ class Polarsteps_Integration_Connector {
 	public function polarsteps_get_step_data() {
 
 		$user_id = get_option( 'polarsteps_user_id' );
-		$trip_id = get_option( 'polarsteps_trip_id' );
 
 		if ( empty( $user_id ) ) {
-			return false;
+
+			$username = get_option( 'polarsteps_username' );
+			$user_id  = $this->polarsteps_obtain_user_id( $username );
+
+			if ( ! $user_id ) {
+				return false;
+			}
+
+			update_option( 'polarsteps_user_id', $user_id );
 		}
 
 		$result = file_get_contents( self::POLARSTEPS_URI . 'users/' . $user_id );
 
 		if ( $result ) {
+
+			$trip_id = get_option( 'polarsteps_trip_id' );
 
 			$user_data = json_decode( $result );
 
@@ -112,7 +121,7 @@ class Polarsteps_Integration_Connector {
 	 *
 	 * @return void
 	 */
-	protected function polarsteps_set_trip_data( $trip ) {
+	protected function polarsteps_set_trip_data( stdClass $trip ) {
 		if ( ! empty ( $trip->slug ) ) {
 			update_option( 'polarsteps_trip_slug', $trip->slug );
 		}
@@ -120,6 +129,66 @@ class Polarsteps_Integration_Connector {
 			update_option( 'polarsteps_trip_legacy_id', $trip->id );
 		}
 
+	}
+
+	/**
+	 * Returning the UserId from a given Username
+	 *
+	 * Due to performance the query call is only done to get the username. Updating/Caching the Steps is done directly
+	 * addressing the UserId
+	 *
+	 * @since 0.3.0
+	 *
+	 * @param string $username
+	 *
+	 * @return int
+	 */
+	protected function polarsteps_obtain_user_id( $username = null ) {
+		if ( ! empty( $username ) ) {
+
+			$result = file_get_contents( self::POLARSTEPS_URI . $this->buildQuery( $username ) );
+
+			if ( $result ) {
+				$result = json_decode( $result );
+
+				// Check if Resultset is unambiguous
+				if ( ! empty( $result->num_results ) && $result->num_results == 1 ) {
+					$objects = is_array( $result->objects ) ? $result->objects : [];
+
+					if ( $objects[0] ) {
+						$user_data = $objects[0];
+
+						if ( ! empty( $user_data->id ) ) {
+
+							return $user_data->id;
+						}
+					}
+				}
+
+
+			}
+
+		}
+
+		return false;
+	}
+
+	/**
+	 * Building a Query for search for Users
+	 *
+	 * @since 0.3.0
+	 *
+	 * @param string $username
+	 *
+	 * @return string
+	 */
+	protected function buildQuery( $username ) {
+		return 'users?q=' .
+		       urlencode(
+			       sprintf(
+				       '{"filters":[{"name":"username","op":"ilike","val":"%s"}]}', $username
+			       )
+		       );
 	}
 
 }

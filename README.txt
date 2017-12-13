@@ -2,8 +2,8 @@
 Contributors: npersonn
 Tags: travel, polarsteps
 Requires at least: 3.0.1
-Tested up to: 4.9
-Stable tag: 4.8.1
+Tested up to: 4.9.1
+Stable tag: 4.9.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,8 +27,8 @@ If you like this approach or want to support in the development [https://github.
 1. Install the plugin. Upload a zip-archive or upload `polarsteps-integration` directory to the `/wp-content/plugins/`
 directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Obtain User (and Trip Id) from Polarsteps.com and add it to the plugins settings (see FAQs)
-1. If WP-Cron is not activated. install & actviate Cronjob Plugin e.g. `Cronjob Scheduler`
+1. Obtain Username (and if needed Trip Id) from Polarsteps.com and add it to the plugins settings (see FAQs)
+1. If WP-Cron is not activated. Install & actviate Cronjob Plugin e.g. `Cronjob Scheduler`
 1. Schedule the action `polarsteps_update_steps` whenever needed e.g. hourly
 1. Add the widget on your page to see the last location ("Step") on your page
 
@@ -39,10 +39,9 @@ directory
 
 == Frequently Asked Questions ==
 
-= How to get a User Id from Polarsteps? =
+= How to get my Username from Polarsteps? =
 
-Inspect on your browser all the calls made, when open your trip on the polarsteps website. You find a XHR-call in this
-scheme: `https://www.polarsteps.com/api/users/123456`. `123456` is your User Id.
+You registered with a unique Username on Polarsteps. This Username is used in the Polarsteps Settings.
 
 = How to get a Trip Id from Polarsteps? =
 
@@ -56,6 +55,7 @@ Currently the plugin only supports having profiles with one trip. For now enter 
 == Changelog ==
 
 = 0.3.0 =
+* Updated Settings. Instead of a UserId, only the username is now needed
 * Using Wp-Cron to Schedule Updates
 * Added pot-File for I18n
 
