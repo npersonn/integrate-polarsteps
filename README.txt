@@ -28,7 +28,7 @@ If you like this approach or want to support in the development [https://github.
 directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Obtain User (and Trip Id) from Polarsteps.com and add it to the plugins settings (see FAQs)
-1. Install & Actviate Cronjob Plugin e.g. `Cronjob Scheduler`
+1. If WP-Cron is not activated. install & actviate Cronjob Plugin e.g. `Cronjob Scheduler`
 1. Schedule the action `polarsteps_update_steps` whenever needed e.g. hourly
 1. Add the widget on your page to see the last location ("Step") on your page
 
@@ -36,7 +36,6 @@ directory
 * Auto obtain User
 * Support multiple trips by Trip Id
 * Show all cached steps in the wordpress options and allow CRUD.
-* Add Uninstall functionality (drop plugin table)
 
 == Frequently Asked Questions ==
 
@@ -55,6 +54,10 @@ Currently the plugin only supports having profiles with one trip. For now enter 
 * Nothing here yet.
 
 == Changelog ==
+
+= 0.3.0 =
+* Using Wp-Cron to Schedule Updates
+* Added pot-File for I18n
 
 = 0.2.0 =
 * Added Deeplink for Recent Location Widget

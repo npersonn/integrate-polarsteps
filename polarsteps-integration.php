@@ -8,7 +8,7 @@
  * Plugin Name:       Polarsteps Integration
  * Plugin URI:        http://github.com/npersonn/polarsteps-integration
  * Description:       Integrating Trip Data from Polarsteps.com into Wordpress. Showing the last location in a widget.
- * Version:           0.2.0
+ * Version:           0.3.0
  * Author:            npersonn
  * Author URI:        http://github.com/npersonn
  * License:           GPL-2.0+

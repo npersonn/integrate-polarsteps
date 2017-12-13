@@ -23,11 +23,16 @@
 class Polarsteps_Integration_Deactivator {
 
 	/**
+	 * Deactivate Update-Cron
 	 * Removing cached Data from table
 	 *
 	 * @since    0.2.1
 	 */
 	public static function deactivate() {
+
+		$timestamp = wp_next_scheduled( 'polarsteps_update_steps' );
+		wp_unschedule_event( $timestamp, 'polarsteps_update_steps' );
+
 		global $wpdb;
 		global $polarsteps_table_name;
 		$wpdb->query("TRUNCATE TABLE {$polarsteps_table_name}");
