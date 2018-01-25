@@ -1,6 +1,6 @@
 === Polarsteps Integration ===
 Contributors: npersonn
-Tags: travel, polarsteps
+Tags: travel, polarsteps, travel blog, travelmap
 Requires at least: 3.0.1
 Tested up to: 4.9.1
 Stable tag: 4.9.1
@@ -11,15 +11,17 @@ Wordpress Plugin to integrate Travel Data from Polarsteps within a widget.
 
 == Description ==
 
-[Polarsteps.com](http://polarsteps.com/ "Polarsteps.com") offers a great way of log your travel experiences. The app does record GPS Locations "Steps". The user can add images and texts for them. However, for multiple reasons a lot of travellers are having wordpress travel blogs up and running. If they still want to use Polarsteps and show the data on their wordpress instance, this plugin offers basic integration between both worlds.
+[Polarsteps.com](http://polarsteps.com/ "Polarsteps.com") offers a great way of logging your travel experiences. The app does record GPS Locations "Steps". The user can add images and texts for them. However, for multiple reasons, a lot of travelers are having WordPress travel blogs up and running. If they still want to use Polarsteps and show their last location in their WordPress instance, this plugin offers basic integration between both worlds.
 
-While being on my round the world trip, I was looking into several options how to back home from my journey. In the end I thought a combination of a traditional blogging platform used to write posts and an app like Polarsteps offers most flexibility for me while travelling. If me or my girlfriend wants to write an article we can do so and if it's just. about letting know everyone where I was, I could use polarsteps. Still, for the audience it is important to have all in one place.
+While being on my round the world trip, I was looking into several options how to communicate back home from my journey. In the end, I thought a combination of a traditional blogging platform used to write posts and an app like Polarsteps offers the most flexibility for me while traveling. If my girlfriend or I want to write an article what happened in the last days (for multiple locations) we can do so. If it's just about letting everyone know where I was, I use polarsteps travel tracker. Still, for the audience it is important to have all in one place - and have a single point of knowledge.
 
-This plugin does a first approach in caching the steps on it's side and giving to the users a brief information where and when a last location was set. Please note the plugin itself is not yet in a stable version.
+This plugin does the first approach to caching the "Steps" on WordPress-side and giving to the users a brief information within a widget where and when the last location within polarsteps was set.
 
-As I'm not part of the company behind polarsteps and just developed the plugin for personal purposes, I reached out for them, in order to check, if they might support the plugin officially. Mainly due to business and UX reasons, they responded they could not officially support my approach. This means the APIs on their side could change from one day to another. In this case the plugin would stop getting new steps from your polarsteps profile.
+See the Github-Repo here: [https://github.com/npersonn/integrate-polarsteps](https://github.com/npersonn/integrate-polarsteps "https://github.com/npersonn/integrate-polarsteps")
 
-If you like this approach or want to support in the development [https://github.com/npersonn/integrate-polarsteps](https://github.com/npersonn/integrate-polarsteps "https://github.com/npersonn/integrate-polarsteps")
+== Disclaimer ==
+
+As I'm not part of the company behind Polarsteps and just developed the plugin for personal purposes, I reached out to them, in order to check, if they might support the plugin officially. Mainly due to business and UX reasons, they responded they could not officially support my approach. This means the APIs on their side could change from one day to another. In this case, the plugin would stop getting new steps from your Polarsteps profile.
 
 == Installation ==
 
@@ -27,13 +29,12 @@ If you like this approach or want to support in the development [https://github.
 1. Install the plugin. Upload a zip-archive or upload `polarsteps-integration` directory to the `/wp-content/plugins/`
 directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Obtain Username (and if needed Trip Id) from Polarsteps.com and add it to the plugins settings (see FAQs)
-1. If WP-Cron is not activated. Install & actviate Cronjob Plugin e.g. `Cronjob Scheduler`
+1. Obtain Username (and if needed Trip Id) from Polarsteps.com and add it to the plugin's settings (see FAQs)
+1. If WP-Cron is not activated. Install & activate Cronjob Plugin e.g. `Cronjob Scheduler`
 1. Schedule the action `polarsteps_update_steps` whenever needed e.g. hourly
-1. Add the widget on your page to see the last location ("Step") on your page
+1. Add the widget to your page to see the last location ("Step") on your page
 
-== Missing Functionality due to current state of Development ==
-* Auto obtain User
+== Missing Functionality due to current (early) state of Development ==
 * Support multiple trips by Trip Id
 * Show all cached steps in the wordpress options and allow CRUD.
 
@@ -45,7 +46,7 @@ You registered with a unique Username on Polarsteps. This Username is used in th
 
 = How to get a Trip Id from Polarsteps? =
 
-Currently the plugin only supports having profiles with one trip. For now enter "0" here.
+Currently, the plugin only supports having profiles with one trip. For now enter "0" here.
 
 
 == Screenshots ==
@@ -53,6 +54,9 @@ Currently the plugin only supports having profiles with one trip. For now enter 
 * Nothing here yet.
 
 == Changelog ==
+
+= 0.3.1 =
+* Fixing issue of incomplete data-sets from API. Added Update-Query for missing location names
 
 = 0.3.0 =
 * Updated Settings. Instead of a UserId, only the username is now needed
