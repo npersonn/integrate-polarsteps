@@ -51,7 +51,7 @@ Currently, the plugin only supports having profiles with one trip. For now enter
 
 == Screenshots ==
 
-* Nothing here yet.
+1. Homepage Example - Show your last step in a widget
 
 == Changelog ==
 
