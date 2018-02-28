@@ -55,6 +55,9 @@ Currently, the plugin only supports having profiles with one trip. For now enter
 
 == Changelog ==
 
+= 0.3.2 =
+* Fixing issue on Admin-page, not showing the correct polarsteps_username
+
 = 0.3.1 =
 * Fixing issue of incomplete data-sets from API. Added Update-Query for missing location names
 

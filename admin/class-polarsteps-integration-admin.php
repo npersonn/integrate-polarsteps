@@ -118,7 +118,7 @@ class Polarsteps_Integration_Admin {
                                     for="polarsteps_username"><?php _e( 'Username for Polarsteps API', 'polarsteps-integration' ); ?></label>
                         </th>
                         <td>
-                            <input name="polarsteps_user_id" type="string" id="polarsteps_username"
+                            <input name="polarsteps_username" type="text" id="polarsteps_username"
                                    value="<?php form_option( 'polarsteps_username' ); ?>"/>
 
                         </td>
