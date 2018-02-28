@@ -2,8 +2,9 @@
 Contributors: npersonn
 Tags: travel, polarsteps, travel blog, travelmap
 Requires at least: 3.0.1
-Tested up to: 4.9.1
-Stable tag: 4.9.1
+Tested up to: 4.9.4
+Requires PHP: 5.6
+Stable tag: 4.9.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,10 +34,6 @@ directory
 1. If WP-Cron is not activated. Install & activate Cronjob Plugin e.g. `Cronjob Scheduler`
 1. Schedule the action `polarsteps_update_steps` whenever needed e.g. hourly
 1. Add the widget to your page to see the last location ("Step") on your page
-
-== Missing Functionality due to current (early) state of Development ==
-* Support multiple trips by Trip Id
-* Show all cached steps in the wordpress options and allow CRUD.
 
 == Frequently Asked Questions ==
 
