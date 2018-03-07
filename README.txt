@@ -45,12 +45,23 @@ You registered with a unique Username on Polarsteps. This Username is used in th
 
 Currently, the plugin only supports having profiles with one trip. For now enter "0" here.
 
+= I don't see a recent Location in the Widget =
+
+Check the Settings (Settings > Polarsteps Settings), if the username is correctly set.
+If the username is correct, on save the data is fetched. Afterwards, last step is shown in a notice.
+
+= My Widget "Recent Location" is not updating =
+
+Make sure that either WP-cron is activated or a Cronjob plugin is successfully triggering the action `polarsteps_update_steps`.
 
 == Screenshots ==
 
 1. Homepage Example - Show your last step in a widget
 
 == Changelog ==
+
+= 0.3.3 =
+* Usablity: Updating & showing the recent location in the options, after a username is changed
 
 = 0.3.2 =
 * Fixing issue on Admin-page, not showing the correct polarsteps_username

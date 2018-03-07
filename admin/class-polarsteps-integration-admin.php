@@ -70,6 +70,7 @@ class Polarsteps_Integration_Admin {
 			'show_in_rest' => true,
 			'type'         => 'integer',
 			'description'  => __( 'Trip Id from Polarsteps API.' ),
+			'default'      => 0,
 		) );
 	}
 
@@ -91,12 +92,17 @@ class Polarsteps_Integration_Admin {
 	}
 
 	/**
-     * Render the contents of the settings page
-     *
+	 * Render the contents of the settings page, if User has sufficient rights
+	 *
 	 * @since 0.1.0
 	 * @return void
 	 */
 	public function render() {
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( __( 'You do not have sufficient rights to access this page.' ) );
+		}
+
 		?>
         <div class="wrap">
 
@@ -105,6 +111,10 @@ class Polarsteps_Integration_Admin {
                     _e('Polarsteps Integration Settings', 'polarsteps-integration');
                 ?>
             </h1>
+
+			<?php
+			_e( $this->generate_recent_step_notice() );
+			?>
 
             <form method="post" action="options.php">
 
@@ -118,7 +128,7 @@ class Polarsteps_Integration_Admin {
                                     for="polarsteps_username"><?php _e( 'Username for Polarsteps API', 'polarsteps-integration' ); ?></label>
                         </th>
                         <td>
-                            <input name="polarsteps_username" type="text" id="polarsteps_username"
+                            <input name="polarsteps_username" type="text" id="polarsteps_username" class="regular-text"
                                    value="<?php form_option( 'polarsteps_username' ); ?>"/>
 
                         </td>
@@ -133,17 +143,18 @@ class Polarsteps_Integration_Admin {
                     </tr>
                     <tr>
                         <th scope="row"><label
-                                    for="polarsteps_trip_id"><?php _e( 'Trip Id for Polarsteps API', 'polarsteps-integration'); ?></label></th>
+                                    for="polarsteps_trip_id"><?php _e( 'Trip Id for Polarsteps API', 'polarsteps-integration' ); ?></label>
+                        </th>
                         <td>
                             <input name="polarsteps_trip_id" type="number" step="1" min="0" id="polarsteps_trip_id"
-                                   value="<?php form_option( 'polarsteps_trip_id' ); ?>" class="small-text"/>
+                                   value="<?php form_option( 'polarsteps_trip_id' ); ?>" class="regular-text"/>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <?php
-                            _e('Default Trip Id is "0".', 'polarsteps-integration');
-                            ?>
+							<?php
+							_e( 'Default Trip Id is "0".', 'polarsteps-integration' );
+							?>
 
                         </td>
                     </tr>
@@ -161,5 +172,49 @@ class Polarsteps_Integration_Admin {
 
 		<?php
 
+	}
+
+	/**
+	 * Updates the Steps. It is been triggered from Admin-Context e.g. on update_option_polarsteps_username
+	 *
+	 * @since 0.3.3
+	 * @return void
+	 */
+	public function polarsteps_update_steps_from_admin() {
+
+		// Remove the polarsteps_user_id from wp_options
+		update_option( 'polarsteps_user_id', null );
+
+		// Update Steps with new Options
+		do_action( 'polarsteps_update_steps' );
+	}
+
+	/**
+	 * Getting the last cached step, to show it in the options.
+	 *
+	 * @since 0.3.3
+	 * @return string|void
+	 */
+	private function generate_recent_step_notice() {
+		$last_step = apply_filters( 'polarsteps_get_step', 0 );
+
+		if ( ! empty ( $last_step ) ) {
+			$last_step_message = sprintf( '%s, %s',
+				$last_step['location_name'],
+				$last_step['detail']
+			);
+
+			return sprintf( '
+            <div class="card">
+                <h2>
+                    Recent Location
+                </h2>
+                    
+                <p>
+                    Your last saved step is "%s"	
+                </p>
+            </div>', $last_step_message );
+
+		}
 	}
 }

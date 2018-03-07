@@ -168,6 +168,9 @@ class Polarsteps_Integration {
 
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_settings' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_options_page' );
+		// Filter hooks into update_options, when a new Username is saved in the admin panel
+		$this->loader->add_filter('update_option_polarsteps_username', $plugin_admin, 'polarsteps_update_steps_from_admin');
+		$this->loader->add_filter('add_option_polarsteps_username', $plugin_admin, 'polarsteps_update_steps_from_admin');
 	}
 
 	/**
