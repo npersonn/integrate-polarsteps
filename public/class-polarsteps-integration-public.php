@@ -97,5 +97,20 @@ class Polarsteps_Integration_Public {
 		$step_updater->update();
 	}
 
+	/**
+	 * Validating if a Username exists on Polarsteps API
+	 *
+	 * @since 0.3.4
+	 *
+	 * @param string $username
+	 *
+	 * @return bool
+	 */
+	public function validate_username( $username ) {
+		$connector = new Polarsteps_Integration_Connector();
+
+		return $connector->polarsteps_get_user_exists( $username );
+	}
+
 
 }

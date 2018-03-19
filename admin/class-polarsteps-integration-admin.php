@@ -190,6 +190,39 @@ class Polarsteps_Integration_Admin {
 	}
 
 	/**
+	 * Validates the Settings for Username
+	 *
+	 * @since 0.3.4
+	 *
+	 * @param string $new_value
+	 * @param string $old_value
+     *
+     * @return void
+	 */
+	public function polarsteps_validate_username( $new_value, $old_value ) {
+
+		if ( empty ( $new_value ) ) {
+			add_settings_error(
+				'polarsteps_username',
+				'-1',
+				'The Username cannot be empty'
+			);
+
+			return;
+		}
+
+		$is_username_exists = apply_filters( 'polarsteps_validate_username', $new_value );
+		if ( $is_username_exists == false ) {
+			add_settings_error(
+				'polarsteps_username',
+				'-1',
+				sprintf( 'The Username "%s" does not exist on Polarsteps.com.', $new_value )
+			);
+
+		}
+	}
+
+	/**
 	 * Getting the last cached step, to show it in the options.
 	 *
 	 * @since 0.3.3

@@ -31,6 +31,7 @@ As I'm not part of the company behind Polarsteps and just developed the plugin f
 directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Obtain Username (and if needed Trip Id) from Polarsteps.com and add it to the plugin's settings (see FAQs)
+1. Create Trip (with at least one Step) on Polarsteps.com and make sure it is public
 1. If WP-Cron is not activated. Install & activate Cronjob Plugin e.g. `Cronjob Scheduler`
 1. Schedule the action `polarsteps_update_steps` whenever needed e.g. hourly
 1. Add the widget to your page to see the last location ("Step") on your page
@@ -52,13 +53,18 @@ If the username is correct, on save the data is fetched. Afterwards, last step i
 
 = My Widget "Recent Location" is not updating =
 
-Make sure that either WP-cron is activated or a Cronjob plugin is successfully triggering the action `polarsteps_update_steps`.
+Make sure that either WP-cron is activated or a Cronjob plugin is successfully triggering the action `polarsteps_update_steps`. 
+Furthermore, the polarsteps account needs to have public trips. If the user exists but no trip nor steps, naturally the plugin cannot show your recent location.
 
 == Screenshots ==
 
 1. Homepage Example - Show your last step in a widget
 
 == Changelog ==
+
+= 0.3.4 =
+* Usability: Validating, if a Username exists on Settings Change
+* Bugfix: If a User exists, but does not have a public trip an error is logged.
 
 = 0.3.3 =
 * Usablity: Updating & showing the recent location in the options, after a username is changed

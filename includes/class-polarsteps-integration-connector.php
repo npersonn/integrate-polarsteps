@@ -115,6 +115,24 @@ class Polarsteps_Integration_Connector {
 	}
 
 	/**
+	 * Checks, if a User exists
+	 *
+	 * @param string $username
+	 *
+	 * @return bool|WP_Error
+	 */
+	public function polarsteps_get_user_exists( $username ) {
+
+		$result = $this->polarsteps_obtain_user_id( $username );
+
+		if ( false === $result ) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
 	 * Sets the Username from Polarsteps API
 	 *
 	 * @since 0.2.0
