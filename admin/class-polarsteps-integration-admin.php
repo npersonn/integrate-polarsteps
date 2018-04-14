@@ -107,9 +107,9 @@ class Polarsteps_Integration_Admin {
         <div class="wrap">
 
             <h1>
-                <?php
-                    _e('Polarsteps Integration Settings', 'polarsteps-integration');
-                ?>
+				<?php
+				_e( 'Polarsteps Integration Settings', 'polarsteps-integration' );
+				?>
             </h1>
 
 			<?php
@@ -194,12 +194,11 @@ class Polarsteps_Integration_Admin {
 	 *
 	 * @since 0.3.4
 	 *
-	 * @param string $new_value
-	 * @param string $old_value
-     *
-     * @return void
+	 * @param string $new_value The newly set Username
+	 *
+	 * @return string|false
 	 */
-	public function polarsteps_validate_username( $new_value, $old_value ) {
+	public function polarsteps_validate_username( $new_value ) {
 
 		if ( empty ( $new_value ) ) {
 			add_settings_error(
@@ -208,7 +207,7 @@ class Polarsteps_Integration_Admin {
 				'The Username cannot be empty'
 			);
 
-			return;
+			return false;
 		}
 
 		$is_username_exists = apply_filters( 'polarsteps_validate_username', $new_value );
@@ -219,7 +218,10 @@ class Polarsteps_Integration_Admin {
 				sprintf( 'The Username "%s" does not exist on Polarsteps.com.', $new_value )
 			);
 
+			return false;
 		}
+
+		return $new_value;
 	}
 
 	/**
@@ -231,7 +233,7 @@ class Polarsteps_Integration_Admin {
 	private function generate_recent_step_notice() {
 		$last_step = apply_filters( 'polarsteps_get_step', 0 );
 
-		if ( ! empty ( $last_step ) ) {
+		if ( ! empty ( $last_step ) && ! empty ( $last_step['location_name'] ) ) {
 			$last_step_message = sprintf( '%s, %s',
 				$last_step['location_name'],
 				$last_step['detail']
@@ -244,7 +246,7 @@ class Polarsteps_Integration_Admin {
                 </h2>
                     
                 <p>
-                    Your last saved step is "%s"	
+                    Your last saved step is "%s".
                 </p>
             </div>', $last_step_message );
 

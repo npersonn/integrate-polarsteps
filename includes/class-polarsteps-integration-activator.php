@@ -64,6 +64,7 @@ class Polarsteps_Integration_Activator {
 			add_option( 'polarsteps_db_version', $polarsteps_db_version );
 		}
 
+		add_option('polarsteps_username');
 		do_action( 'polarsteps_update_steps' );
 
 		if ( ! wp_next_scheduled( 'polarsteps_update_steps' ) ) {
