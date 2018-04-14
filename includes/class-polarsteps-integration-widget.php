@@ -67,7 +67,7 @@ class Polarsteps_Integration_Location_Widget extends WP_Widget {
 
 		if ( ! empty( $last_step['detail'] ) && ! empty( $last_step['location_country_code'] ) ) {
 			echo '<div class="polarsteps_detail">';
-			echo '<img class="polarsteps_country_flag" src="' . esc_html__( $this->get_flag_url( $last_step['location_country_code'] ) ) . '">';
+			echo '<img class="polarsteps_country_flag" src="' . esc_html__( $this->get_flag_url( $last_step['location_country_code'] ) ) . ' alt="Country Flag '. $last_step['location_country_code'] .' ">';
 			echo esc_html__( $last_step['detail'] );
 			echo '</div>';
 		}
