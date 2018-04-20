@@ -59,7 +59,17 @@ class Polarsteps_Integration_Connector {
 			$this->polarsteps_set_user_data( $user_data->username );
 
 			$all_trips = is_array( $user_data->alltrips ) ? $user_data->alltrips : [];
-			$trip      = is_object( $all_trips[ $trip_id ] ) ? $all_trips[ $trip_id ] : [];
+
+			if ( ! isset( $all_trips [ $trip_id ] ) ) {
+				error_log(
+					sprintf( 'The User with Id %s exists, but does not have any public trips',
+						$user_id )
+				);
+
+				return false;
+			}
+
+			$trip = is_object( $all_trips[ $trip_id ] ) ? $all_trips[ $trip_id ] : [];
 
 			$this->polarsteps_set_trip_data( $trip );
 
@@ -93,6 +103,13 @@ class Polarsteps_Integration_Connector {
 
 			return $result;
 		}
+
+		error_log(
+			sprintf( 'Unable to receive user-dataset from Polarsteps API. Username: %s UserId: %s',
+				$username,
+				$user_id
+			)
+		);
 
 		return [];
 	}
@@ -164,9 +181,11 @@ class Polarsteps_Integration_Connector {
 						}
 					}
 				}
-
-
 			}
+
+			error_log(
+				sprintf( 'Polarsteps-Username %s does not exist.', $username )
+			);
 
 		}
 

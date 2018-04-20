@@ -63,11 +63,16 @@ class Polarsteps_Integration_Data_Loader {
 	 * @return array
 	 */
 	public function get_step( $position ) {
-		$step = $this->get_all_steps()[ $position ] ?: [];
+		$all_steps = $this->get_all_steps();
 
-		$step['deep_link'] = $this->create_deeplink( $step );
+		if ( ! empty( $all_steps ) ) {
+			$step = $all_steps[ $position ] ?: [];
+			$step['deep_link'] = $this->create_deeplink( $step );
 
-		return $step;
+			return $step;
+		}
+
+		return [];
 	}
 
 	/**
