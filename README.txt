@@ -1,10 +1,10 @@
 === Polarsteps Integration ===
 Contributors: npersonn
-Tags: travel, polarsteps, travel blog, travelmap
+Tags: travel, polarsteps, travel blog, travelmap,
 Requires at least: 3.0.1
-Tested up to: 4.9.4
+Tested up to: 4.9.8
 Requires PHP: 5.6
-Stable tag: 4.9.4
+Stable tag: 4.9.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,7 +46,7 @@ You registered with a unique Username on Polarsteps. This Username is used in th
 
 Currently, the plugin only supports having profiles with one trip. For now enter "0" here.
 
-= I don't see a recent Location in the Widget =
+= I don't see a Recent Location in the Widget =
 
 Check the Settings (Settings > Polarsteps Settings), if the username is correctly set.
 If the username is correct, on save the data is fetched. Afterwards, last step is shown in a notice.
@@ -56,11 +56,18 @@ If the username is correct, on save the data is fetched. Afterwards, last step i
 Make sure that either WP-cron is activated or a Cronjob plugin is successfully triggering the action `polarsteps_update_steps`. 
 Furthermore, the polarsteps account needs to have public trips. If the user exists but no trip nor steps, naturally the plugin cannot show your recent location.
 
+= I want to customize my Widget =
+Feel free to edit the CSS-classes `polarsteps_widget`, `polarsteps_location_name_href`, `polarsteps_start_time` and `polarsteps_country_flag` to your needs.
+
 == Screenshots ==
 
 1. Homepage Example - Show your last step in a widget
 
 == Changelog ==
+
+= 0.3.5 =
+* Bugfix: Adapt Connector due to breaking change on `users` endpoint
+* Use api.polarsteps.com instead of www.polarsteps.com
 
 = 0.3.4 =
 * Usability: Validating, if a Username exists on Settings Change

@@ -24,7 +24,7 @@ class Polarsteps_Integration_Connector {
 	 * @since 0.1.0
 	 * @var string
 	 */
-	const POLARSTEPS_URI = 'https://www.polarsteps.com/api/';
+	const POLARSTEPS_URI = 'https://api.polarsteps.com/';
 
 	/**
 	 * Gets the Step Data from Polarsteps API
@@ -34,12 +34,13 @@ class Polarsteps_Integration_Connector {
 	 */
 	public function polarsteps_get_step_data() {
 
-		$user_id = get_option( 'polarsteps_user_id' );
+		$user_id  = get_option( 'polarsteps_user_id' );
+		$username = get_option( 'polarsteps_username' );
 
 		if ( empty( $user_id ) ) {
 
-			$username = get_option( 'polarsteps_username' );
-			$user_id  = $this->polarsteps_obtain_user_id( $username );
+			// ToDo: The API now offers direct access to user-data by username. This step is redundant
+			$user_id = $this->polarsteps_obtain_user_id( $username );
 
 			if ( ! $user_id ) {
 				return false;
@@ -48,7 +49,7 @@ class Polarsteps_Integration_Connector {
 			update_option( 'polarsteps_user_id', $user_id );
 		}
 
-		$result = file_get_contents( self::POLARSTEPS_URI . 'users/' . $user_id );
+		$result = file_get_contents( self::POLARSTEPS_URI . $this->buildQuery( $username ) );
 
 		if ( $result ) {
 
@@ -186,26 +187,16 @@ class Polarsteps_Integration_Connector {
 			if ( $result ) {
 				$result = json_decode( $result );
 
-				// Check if Resultset is unambiguous
-				if ( ! empty( $result->num_results ) && $result->num_results == 1 ) {
-					$objects = is_array( $result->objects ) ? $result->objects : [];
+				if ( ! empty( $result->id ) ) {
 
-					if ( $objects[0] ) {
-						$user_data = $objects[0];
-
-						if ( ! empty( $user_data->id ) ) {
-
-							return $user_data->id;
-						}
-					}
+					return $result->id;
 				}
 			}
-
-			error_log(
-				sprintf( 'Polarsteps-Username %s does not exist.', $username )
-			);
-
 		}
+
+		error_log(
+			sprintf( 'Polarsteps-Username %s does not exist.', $username )
+		);
 
 		return false;
 	}
@@ -220,12 +211,7 @@ class Polarsteps_Integration_Connector {
 	 * @return string
 	 */
 	protected function buildQuery( $username ) {
-		return 'users?q=' .
-		       urlencode(
-			       sprintf(
-				       '{"filters":[{"name":"username","op":"ilike","val":"%s"}]}', $username
-			       )
-		       );
+		return 'users/byusername/' . urlencode( $username );
 	}
 
 }
