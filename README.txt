@@ -2,7 +2,7 @@
 Contributors: npersonn
 Tags: travel, polarsteps, travel blog, travelmap,
 Requires at least: 3.0.1
-Tested up to: 4.9.8
+Tested up to: 5.0.1
 Requires PHP: 5.6
 Stable tag: 4.9.8
 License: GPLv2 or later
