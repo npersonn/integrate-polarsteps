@@ -182,7 +182,7 @@ class Polarsteps_Integration_Connector {
 	protected function polarsteps_obtain_user_id( string $username = null ): int {
 		if ( ! empty( $username ) ) {
 
-			$result = $this->geRemoteResult( self::POLARSTEPS_URI . $this->buildQuery( $username ) );
+			$result = $this->doRemoteCall( self::POLARSTEPS_URI . $this->buildQuery( $username ) );
 
 			if ( $result ) {
 				$result = json_decode( $result );
