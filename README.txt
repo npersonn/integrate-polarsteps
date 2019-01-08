@@ -3,7 +3,7 @@ Contributors: npersonn
 Tags: travel, polarsteps, travel blog, travelmap,
 Requires at least: 3.0.1
 Tested up to: 5.0.1
-Requires PHP: 5.6
+Requires PHP: 7.0
 Stable tag: 4.9.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -65,6 +65,10 @@ Feel free to edit the CSS-classes `polarsteps_widget`, `polarsteps_location_name
 
 == Changelog ==
 
+= 0.4.0 =
+* Use cUrl for API-Calls
+* Add scalar Typehints
+
 = 0.3.5 =
 * Bugfix: Adapt Connector due to breaking change on `users` endpoint
 * Use api.polarsteps.com instead of www.polarsteps.com
@@ -101,4 +105,4 @@ Feel free to edit the CSS-classes `polarsteps_widget`, `polarsteps_location_name
 
 == Upgrade Notice ==
 
-* Just a first approach. Nothing here yet.
+* From Version 0.4.0 the plugin needs cUrl and it's PHP-extension installed.
