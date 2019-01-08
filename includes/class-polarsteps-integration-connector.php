@@ -49,7 +49,7 @@ class Polarsteps_Integration_Connector {
 			update_option( 'polarsteps_user_id', $user_id );
 		}
 
-		$result = file_get_contents( self::POLARSTEPS_URI . $this->buildQuery( $username ) );
+		$result = $this->doRemoteCall( self::POLARSTEPS_URI . $this->buildQuery( $username ) );
 
 		if ( $result ) {
 
@@ -122,7 +122,7 @@ class Polarsteps_Integration_Connector {
 	 *
 	 * @return bool|WP_Error
 	 */
-	public function polarsteps_get_user_exists( $username ) {
+	public function polarsteps_get_user_exists( string $username ) {
 
 		$result = $this->polarsteps_obtain_user_id( $username );
 
@@ -142,7 +142,7 @@ class Polarsteps_Integration_Connector {
 	 *
 	 * @return void
 	 */
-	protected function polarsteps_set_user_data( $username ) {
+	protected function polarsteps_set_user_data( string $username ): void {
 		if ( ! get_option( 'polarsteps_username' ) && ! empty ( $username ) ) {
 			update_option( 'polarsteps_username', $username );
 		}
@@ -157,7 +157,7 @@ class Polarsteps_Integration_Connector {
 	 *
 	 * @return void
 	 */
-	protected function polarsteps_set_trip_data( stdClass $trip ) {
+	protected function polarsteps_set_trip_data( stdClass $trip ): void {
 		if ( ! empty ( $trip->slug ) ) {
 			update_option( 'polarsteps_trip_slug', $trip->slug );
 		}
@@ -179,10 +179,10 @@ class Polarsteps_Integration_Connector {
 	 *
 	 * @return int
 	 */
-	protected function polarsteps_obtain_user_id( $username = null ) {
+	protected function polarsteps_obtain_user_id( string $username = null ): int {
 		if ( ! empty( $username ) ) {
 
-			$result = file_get_contents( self::POLARSTEPS_URI . $this->buildQuery( $username ) );
+			$result = $this->doRemoteCall( self::POLARSTEPS_URI . $this->buildQuery( $username ) );
 
 			if ( $result ) {
 				$result = json_decode( $result );
@@ -210,8 +210,28 @@ class Polarsteps_Integration_Connector {
 	 *
 	 * @return string
 	 */
-	protected function buildQuery( $username ) {
+	protected function buildQuery( string $username ): string {
 		return 'users/byusername/' . urlencode( $username );
+	}
+
+	/**
+	 * Building a Query for search for Users
+	 *
+	 * @since 0.4.0
+	 *
+	 * @param string $url
+	 *
+	 * @return mixed
+	 */
+	protected function doRemoteCall( string $url ) {
+		$ch = curl_init();
+		curl_setopt( $ch, CURLOPT_HEADER, false );
+		curl_setopt( $ch, CURLOPT_URL, $url);
+		curl_setopt( $ch, CURLOPT_SSLVERSION, 3 );
+		$result = curl_exec( $ch );
+		curl_close( $ch );
+
+		return $result;
 	}
 
 }
